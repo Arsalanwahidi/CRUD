@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <!-- <link rel="stylesheet" href="{% static '/task/style/updates.css' %}"> -->
+{% endblock %}
+
+{% block title %}
+    <title>Update Task Page</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container card row fw-light mt-5" style="text-align: ceneter;margin-left:100px">
+        <div class="mb-3 text-center">
+            <h2 class="fw-light">Update Task</h2>
+        </div>
+        <form action="/task/update/{{task.id}}" method="post" class="row g-1">
+            {% csrf_token %}
+    
+            <div class="mb-3">
+                <div class="col-md-12 text-center">
+                    <label for="id_title_task" class="d-flex form-label">Title task:</label>
+                    <input type="text" class="form-control d-flex" id="exampleFormControlInput1" name="title_task" value="{{task.title_task}}" maxlength="200" required="" spellcheck="false" data-ms-editor="true">
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <div class="col-md-12">
+                    <label for="id_description_task" class="form-label">Description task:</label>
+                    <textarea name="description_task" class="form-control col-sm-1" required="" id="exampleFormControlTextarea1" spellcheck="false" data-ms-editor="true">{{task.description_task}}           
+                    </textarea>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <div class="col-md-12">
+                    <label for="id_start_date" class="form-label">Start date:</label>
+                    <input type="text" name="start_date" class="form-control" id="exampleFormControlInput1" value="{{task.start_date|date:'Y-m-d'}}" required="" spellcheck="false" data-ms-editor="true">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <div class="col-md-12">
+                    <label for="id_end_date" class="form-label">End date:</label>
+                    <input type="text" name="end_date" class="form-control" id="exampleFormControlInput1" value="{{task.end_date|date:'Y-m-d'}}" required="" spellcheck="false" data-ms-editor="true">
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto">
+                <div class="col-md-6"></div>
+                    <input type="submit" class="btn btn-dark text-transparent mb-2 fw-light" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div>
+        <a href="{% url 'tasks:home' %}" class="fw-lighter text-dark" 
+        style="font-size: 1.3rem;position: fixed;top: 0px;left: 100px;text-decoration:none;">
+            <i class="fa fa-arrow-circle-left text-dark"></i>Task List</a>
+    </div>
+   
+{% endblock %}

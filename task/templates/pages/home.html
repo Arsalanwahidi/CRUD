@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static '/task/style/homes.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>Home Task Page</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid card p-3 mt-3 fw-lighter">
+        <div class="text-center text-white-50 bg-dark p-1" style="width:30%; text-align: center;margin: 10px auto;border-radius: 5px;">
+            <h1 class="border-bottom border-info fw-light">List of Task</h1>
+        </div>
+            <div class="row align-items-center lh-5 rounded-1 p-3 mb-2 bg-dark text-white sticky-top ">
+                <div class="col-2 border-1 border-start border-info">
+                    Task
+                </div>
+                <div class="col-4 border-1 border-start border-info">
+                  Description
+                </div>
+                <div class="col-2 text-center border-1 border-start border-info">
+                  Start Date
+                </div>
+                <div class="col-2 text-center border-1 border-start border-info">
+                    End Date
+                </div>
+                <div class="col text-center border-1 border-start border-info">
+                    Delete
+                </div>
+                <div class="col text-center border-1 border-start border-end border-info">
+                    Update
+                </div>
+              </div>
+            {% for task in tasks reversed %}
+              <div class="row align-items-center border-bottom border-info p-2 effect">
+                <div class="col-2">
+                    {{task.title_task}}
+                </div>
+                <div class="col-4">
+                    {{task.description_task}}
+                </div>
+                <div class="col-2 text-center">
+                    {{task.start_date}}
+                </div>
+                <div class="col-2 text-center">
+                    {{task.end_date}}
+                </div>
+                <div class="col text-center">
+                    <a href="{% url 'tasks:delete' task.id %}"><i class="fa fa-trash-o text-dark"></i></a>
+                </div>
+                <div class="col text-center">
+                    <a href="{% url 'tasks:update' task.id %}"><i class="fa fa-undo text-dark"></i></a>
+                </div>
+              </div>
+            {% endfor %}  
+        </div>
+        <div id="add-task-container">
+            <a href="{% url 'tasks:create' %}" id="add-task" class="text-white-50 fw-light">Add Task</a>
+        </div>
+    </div>
+{% endblock %}
