@@ -29,10 +29,6 @@ def create(request):
     else:
         return render(request, 'create.html', {'form': form})
 
-def details(request, id):
-
-    task = ModelTask.objects.get(pk=id)
-    return render(request, 'details.html', {'task': task})
 
 def delete(request, id):
 
