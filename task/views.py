@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 @login_required(redirect_field_name='to', login_url='login')
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def home(request):
 
@@ -72,4 +73,4 @@ def sign_up(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
