@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static '/task/style/homes.css' %}">
+    <link rel="stylesheet" href="{% static '/task/style/style.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -11,6 +11,12 @@
 
 {% block content %}
     <div class="container-fluid card p-3 mt-3 fw-lighter">
+        {% if request.user.is_authenticated %}
+            <p>
+                <a href="{% url 'logout' %}" class="nav-links"><span>Logout</span></a>
+                <a href="{% url 'password_change' %}" class="nav-links"><span>Change password</span></a>
+            </p>
+        {% endif %}
         <div class="text-center text-white-50 bg-dark p-1" style="width:30%; text-align: center;margin: 10px auto;border-radius: 5px;">
             <h1 class="border-bottom border-info fw-light">List of Task</h1>
         </div>

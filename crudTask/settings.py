@@ -56,7 +56,7 @@ ROOT_URLCONF = 'crudTask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['task/templates/pages/'],
+        'DIRS': ['task/templates', 'task/templates/pages'],
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': False,
@@ -128,3 +128,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Login and Logout Redirect
+
+LOGIN_REDIRECT_URL = 'tasks:home'
+LOGOUT_REDIRECT_URL = 'tasks:home'
+LOGIN_URL = '/accounts/login/'
