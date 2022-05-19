@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static '/task/style/style.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -33,7 +38,7 @@
             </table>
             <input type="submit" value="Sign Up">
         </form>
-        <a href="{% url 'login' %}">Login</a>
+        <P style="margin-top: 10px;"><a href="{% url 'login' %}" class="nav-links"><span>Login</span></a> </P>
     </div>
     
 {% endblock %}
