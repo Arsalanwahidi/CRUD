@@ -7,7 +7,7 @@ class ModelTask(models.Model):
     description_task = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
-    username = models.CharField(max_length=100, null=True, blank=False)
+    username = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.title_task
