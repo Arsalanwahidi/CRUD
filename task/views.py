@@ -5,6 +5,8 @@ from task.forms import FormTask
 from task.models import ModelTask
 from django.views.decorators.cache import cache_control
 from django.contrib.auth.forms import UserCreationForm
+
+
 # Create your views here.
 
 @login_required(redirect_field_name='to', login_url='login')
@@ -12,9 +14,10 @@ from django.contrib.auth.forms import UserCreationForm
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def home(request):
 
-    task = ModelTask.objects.all()
+    username = request.user
+    task = ModelTask.objects.filter(username=username).values()
     
-    return render(request, 'home.html', {'tasks': task})
+    return render(request, 'home.html', {'tasks': task, "username": username})
     
 @login_required(redirect_field_name='to', login_url='login/')
 def create(request):
@@ -26,8 +29,9 @@ def create(request):
         description = request.POST.get('description_task')
         start = request.POST.get('start_date')
         end = request.POST.get('end_date')
+        username = request.user
 
-        ModelTask.objects.create(title_task=title, description_task=description, start_date=start, end_date=end)
+        ModelTask.objects.create(title_task=title, description_task=description, start_date=start, end_date=end, username=username)
         
         return redirect('tasks:home')
     else:
